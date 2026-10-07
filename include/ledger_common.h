@@ -12,7 +12,9 @@
  * the same whichever model produced them.
  * ============================================================ */
 
-#define TX_FEE          1     /* fixed fee on every member-initiated transfer */
+#define TX_FEE              1     /* fixed fee on every member-initiated transfer */
+#define RETURN_BONUS_ON_TIME 10   /* coins credited to a member for an on-time return */
+#define RETURN_BONUS_LATE    5    /* coins credited for a late return */
 
 typedef enum {
     LEDGER_MODE_UTXO,
