@@ -1,0 +1,5 @@
+M001|Alice Mugisha|BSE
+M002|Bob Okello|BSE
+M003|Carol Uwase|BIT
+M004|David Deng|BSE
+M005|Esther Akol|BIT

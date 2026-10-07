@@ -1,0 +1,6 @@
+B001|Introduction to Algorithms|Thomas Cormen
+B002|The C Programming Language|Brian Kernighan
+B003|Computer Networks|Andrew Tanenbaum
+B004|Operating System Concepts|Abraham Silberschatz
+B005|Applied Cryptography|Bruce Schneier
+B006|Mastering Bitcoin|Andreas Antonopoulos
