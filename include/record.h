@@ -27,6 +27,7 @@
 #define NAME_LEN        50
 
 #define LIBRARIAN_ID    "LIBRARIAN"   /* signer for system-generated OVERDUE flags */
+#define LIBRARY_ACCOUNT "LIBRARY"     /* token account that receives settled fines */
 
 typedef enum {
     ACTION_BORROWED,
