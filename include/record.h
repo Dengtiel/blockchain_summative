@@ -20,7 +20,7 @@
  * ============================================================ */
 
 #define RECORD_ID_LEN   32
-#define BOOK_ID_LEN     20
+#define BOOK_ID_LEN     16
 #define COPY_ID_LEN     24
 #define TITLE_LEN       80
 #define MEMBER_ID_LEN   20
