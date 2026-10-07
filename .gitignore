@@ -1,0 +1,14 @@
+# build products
+build/
+library_tracker
+*.o
+
+# runtime state: chain, ledgers, pool, ECDSA keys (never commit private keys)
+data/
+keys/
+*.pem
+*.dat
+
+# editor / OS noise
+.vscode/
+.DS_Store
