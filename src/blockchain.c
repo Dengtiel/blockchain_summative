@@ -55,10 +55,10 @@ Block *block_create(const Block *previous, LendingRecord *records, size_t record
 
 size_t block_header_serialize(const Block *b, unsigned char *out, size_t out_size) {
     int written = snprintf((char *)out, out_size,
-        "%lu|%ld|%zu|%s|%s|%s|%d|%s|%lu",
+        "%lu|%ld|%zu|%s|%s|%s|%d|%s|%lu|%d",
         b->index, (long)b->timestamp, b->record_count,
         b->previous_hash, b->merkle_root, b->sealed_by,
-        b->token_reward, b->transaction_id, b->pow_nonce);
+        b->token_reward, b->transaction_id, b->pow_nonce, b->difficulty);
 
     if (written < 0) return 0;
     return (size_t)written < out_size ? (size_t)written : out_size - 1;

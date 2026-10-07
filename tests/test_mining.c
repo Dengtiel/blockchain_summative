@@ -35,6 +35,7 @@ int main(void) {
     Block *b = block_create(g, one_record("REQ000001"), 1, "MINER1", 0, GENESIS_HASH, 2000);
     mining_solve(b, 2);
     CHECK(strncmp(b->hash, "00", 2) == 0, "difficulty 2 yields a hash starting with 00");
+    CHECK(b->difficulty == 2, "the block records the difficulty it was mined at");
     CHECK(!mining_hash_meets_difficulty("0a", 2) && mining_hash_meets_difficulty("00ab", 2),
           "difficulty predicate counts leading zeros");
     CHECK(mining_hash_meets_difficulty("ffff", 0), "difficulty 0 accepts any hash");

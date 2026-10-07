@@ -11,7 +11,7 @@
 #include "mining.h"
 #include "input.h"
 
-#define CHAIN_MAGIC "LBTCHN02"
+#define CHAIN_MAGIC "LBTCHN03"
 #define MAX_RECORDS_PER_BLOCK_ON_DISK 4096
 
 /* ---- chain file ---- */
@@ -36,6 +36,7 @@ int chain_save(const Chain *chain, const char *path) {
         fwrite(&b->token_reward, sizeof(b->token_reward), 1, f);
         fwrite(b->transaction_id, sizeof(b->transaction_id), 1, f);
         fwrite(&b->pow_nonce, sizeof(b->pow_nonce), 1, f);
+        fwrite(&b->difficulty, sizeof(b->difficulty), 1, f);
         if (b->record_count > 0) fwrite(b->records, sizeof(LendingRecord), b->record_count, f);
     }
 
@@ -60,6 +61,7 @@ static Block *read_block(FILE *f) {
     ok &= fread(&b->token_reward, sizeof(b->token_reward), 1, f) == 1;
     ok &= fread(b->transaction_id, sizeof(b->transaction_id), 1, f) == 1;
     ok &= fread(&b->pow_nonce, sizeof(b->pow_nonce), 1, f) == 1;
+    ok &= fread(&b->difficulty, sizeof(b->difficulty), 1, f) == 1;
 
     if (!ok || b->record_count > MAX_RECORDS_PER_BLOCK_ON_DISK) { free(b); return NULL; }
 

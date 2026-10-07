@@ -14,7 +14,7 @@
  *
  * Header fields (all covered by the block hash):
  *   index, timestamp, record_count, previous_hash, merkle_root,
- *   sealed_by, token_reward, transaction_id, pow_nonce
+ *   sealed_by, token_reward, transaction_id, pow_nonce, difficulty
  * The block hash itself is SHA-256 over that serialized header.
  * ============================================================ */
 
@@ -34,6 +34,7 @@ typedef struct Block {
     int token_reward;                       /* coins paid for this block's returns: 10 on time, 5 late */
     char transaction_id[TX_ID_LEN];         /* SHA-256 of the reward transaction(s); zeros if none */
     unsigned long pow_nonce;
+    int difficulty;                         /* difficulty it was mined at (covered by the hash) */
     struct Block *next;
 } Block;
 

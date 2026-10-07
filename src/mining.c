@@ -25,6 +25,7 @@ unsigned long mining_solve(Block *block, int difficulty) {
     char candidate[HASH_HEX_LEN];
 
     block->pow_nonce = 0;
+    block->difficulty = difficulty;   /* part of the hashed header, so it cannot be lowered later */
     for (;;) {
         attempts++;
         block_compute_hash(block, candidate);
