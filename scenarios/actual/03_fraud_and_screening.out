@@ -1,0 +1,75 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.NkkVkIU0Ys'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B999 M001
+Borrow rejected: Unknown book id B999.
+library> borrow_book B001 M999
+Borrow rejected: Unknown member id M999.
+library> borrow_book B001 M001 2020-01-01
+Error: the due date is in the past.
+library> borrow_book B001 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
+library> borrow_book B002 M001
+Borrow request REQ000002 signed by M001 and added to the pending pool.
+  Copy B002-C1, due 2026-10-22, nonce 1, status PENDING.
+library> borrow_book B003 M001
+Borrow request REQ000003 signed by M001 and added to the pending pool.
+  Copy B003-C1, due 2026-10-22, nonce 2, status PENDING.
+library> borrow_book B004 M001
+Borrow request REQ000004 signed by M001 and added to the pending pool.
+  Copy B004-C1, due 2026-10-22, nonce 3, status SUSPICIOUS.
+  FLAGGED SUSPICIOUS: member already holds 3 concurrent borrows (limit 3)
+  It will not be mined until a librarian runs approve_suspicious REQ000004.
+library> fraud_review
+Suspicious requests awaiting review (never mined until approved):
+  REQ000004  BORROWED by M001  B004-C1  submitted 2026-10-08 01:50
+      reason: member already holds 3 concurrent borrows (limit 3)
+1 flagged. Decide with: approve_suspicious <request_id>  or  reject_suspicious <request_id>
+library> borrow_book B001 M002 - REQ000001
+Borrow request REQ000001-DUP2 signed by M002 and added to the pending pool.
+  Copy B001-C2, due 2026-10-22, nonce 0, status SUSPICIOUS.
+  FLAGGED SUSPICIOUS: duplicate request_id already seen
+  It will not be mined until a librarian runs approve_suspicious REQ000001-DUP2.
+library> fraud_review
+Suspicious requests awaiting review (never mined until approved):
+  REQ000004  BORROWED by M001  B004-C1  submitted 2026-10-08 01:50
+      reason: member already holds 3 concurrent borrows (limit 3)
+  REQ000001-DUP2  BORROWED by M002  B001-C2  submitted 2026-10-08 01:50
+      reason: duplicate request_id already seen
+2 flagged. Decide with: approve_suspicious <request_id>  or  reject_suspicious <request_id>
+library> approve_suspicious REQ000004
+Librarian approved REQ000004: it returns to PENDING and can now be mined (original flag: member already holds 3 concurrent borrows (limit 3)).
+library> reject_suspicious REQ000001-DUP2
+Librarian rejected REQ000001-DUP2: it was discarded from the pool and the member's remaining requests were re-numbered and re-signed.
+library> pool_view
+Pending pool (4 request(s)), in mining priority order: overdue-related, then reservation date, then arrival.
+  #   REQUEST      ACTION     MEMBER     ITEM         PRIORITY       STATUS     
+  1   REQ000001    BORROWED   M001       B001-C1      3 normal       PENDING    
+  2   REQ000002    BORROWED   M001       B002-C1      3 normal       PENDING    
+  3   REQ000003    BORROWED   M001       B003-C1      3 normal       PENDING    
+  4   REQ000004    BORROWED   M001       B004-C1      3 normal       PENDING    
+library> mine_solo MINER1
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 15 hash attempt(s).
+  Hash:      09e601c22c5e7e155e7c4ca2c9cdc40e9b10dcb403318ebf7408c042dcb1db1d
+  Sealed by: MINER1
+  Contents:  4 lending record(s), 0 token transfer(s); 4 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  1 unspent output(s), 50 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> member_nonce M001
+M001: 4 record(s) confirmed on the chain, 0 waiting in the pool.
+Next confirmed record must carry nonce 4; the next new request will carry nonce 4.
+library> validate_chain
+Validating 2 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+Chain is VALID (2 block(s) checked).
+library> exit
+State saved to '/tmp/tmp.NkkVkIU0Ys'. Goodbye.

@@ -1,0 +1,115 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.GZyOjOSB77'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B002 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B002-C1, due 2026-10-22, nonce 0, status PENDING.
+library> mine_solo MINER1
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 23 hash attempt(s).
+  Hash:      00dff6a5b28a35d98049a8174405ca15ef84ae8a367c528a81b21f28c33a68a1
+  Sealed by: MINER1
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  1 unspent output(s), 50 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> borrow_book B002 M002
+Borrow rejected: No copy of B002 is available. Use: reserve_book B002 M002
+library> reserve_book B002 M002
+Reservation request REQ000002 signed and added to the pending pool (nonce 0).
+  Once mined, M002 joins the queue and is offered the next returned copy of B002.
+library> reserve_book B002 M003
+Reservation request REQ000003 signed and added to the pending pool (nonce 0).
+  Once mined, M003 joins the queue and is offered the next returned copy of B002.
+library> mine_solo MINER1
+Mining block #2 at difficulty 1 (hash must start with 0)...
+Block #2 mined in 6 hash attempt(s).
+  Hash:      05b9f911661e879901b76dd72f86cec2def9029795fd2c35bddc04d1b9f578e9
+  Sealed by: MINER1
+  Contents:  2 lending record(s), 0 token transfer(s); 2 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  MINER1         50       05015fc47759ccc4...
+  2 unspent output(s), 100 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> reservation_status B002
+Reservation queue for B002 (first in, first out):
+  1. M002       reserved 2026-10-08 01:50
+  2. M003       reserved 2026-10-08 01:50
+library> return_book B002-C1 GOOD
+Return request REQ000004 signed and added to the pending pool (copy B002-C1, nonce 1).
+  On time: reward on confirmation: 10 token(s).
+library> mine_solo MINER1
+Mining block #3 at difficulty 1 (hash must start with 0)...
+Block #3 mined in 11 hash attempt(s).
+  Hash:      0b1223e43884dd78be7fc68a85c1f8eacd2a6a93ebf1d45bb23290d244e8d356
+  Sealed by: MINER1
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Return rewards credited to members: 10 token(s)
+  1 returned copy offered to the reservation queue
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  MINER1         50       05015fc47759ccc4...
+  M001           10       4cc10f04b59a3a1e...
+  MINER1         50       a021b336b4ef2d44...
+  4 unspent output(s), 160 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> view_copy B002-C1
+Copy B002-C1 of B002 ("The C Programming Language")
+  Condition: GOOD
+  State:     RESERVED
+  Held at the desk for the next member in the reservation queue.
+library> reservation_status B002
+Reservation queue for B002 (first in, first out):
+  1. M002       reserved 2026-10-08 01:50
+  2. M003       reserved 2026-10-08 01:50
+  Copy B002-C1 is held at the desk for the member at the front of the queue.
+library> borrow_book B002 M003
+Borrow rejected: No copy of B002 is free for you: the next returned copy is reserved for another member.
+library> borrow_book B002 M002
+Borrow request REQ000005 signed by M002 and added to the pending pool.
+  Copy B002-C1, due 2026-10-22, nonce 1, status PENDING.
+library> mine_solo MINER1
+Mining block #4 at difficulty 1 (hash must start with 0)...
+Block #4 mined in 31 hash attempt(s).
+  Hash:      02a712618a155a4c4c74802034bfcee39a6779219e0544a400356f17b449f971
+  Sealed by: MINER1
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  MINER1         50       05015fc47759ccc4...
+  M001           10       4cc10f04b59a3a1e...
+  MINER1         50       a021b336b4ef2d44...
+  MINER1         50       47d90cf7e066c741...
+  5 unspent output(s), 210 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> view_copy B002-C1
+Copy B002-C1 of B002 ("The C Programming Language")
+  Condition: GOOD
+  State:     BORROWED
+  Holder:    M002
+  Due:       2026-10-22 (renewed 0 of 2 time(s))
+library> reservation_status B002
+Reservation queue for B002 (first in, first out):
+  1. M003       reserved 2026-10-08 01:50
+library> validate_chain
+Validating 5 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+Chain is VALID (5 block(s) checked).
+library> exit
+State saved to '/tmp/tmp.GZyOjOSB77'. Goodbye.

@@ -1,0 +1,67 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.g2DsGaCYl8'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B001 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
+library> mine_solo MINER1
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 26 hash attempt(s).
+  Hash:      063cf2fc3076802d2aab9b999b66d6404e86f0b86c5405ad63e798093050830c
+  Sealed by: MINER1
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  1 unspent output(s), 50 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> exit
+State saved to '/tmp/tmp.g2DsGaCYl8'. Goodbye.
+=== second start: the chain is loaded and re-validated
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.g2DsGaCYl8'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+Validating the chain loaded from disk (2 block(s))...
+Chain is VALID (2 block(s) checked).
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> view_copy B001-C1
+Copy B001-C1 of B001 ("Introduction to Algorithms")
+  Condition: NEW
+  State:     BORROWED
+  Holder:    M001
+  Due:       2026-10-22 (renewed 0 of 2 time(s))
+library> chain_view
+Blockchain: 2 block(s)
+  #     TIME              RECS  DIFF SEALED BY    REWARD HASH
+  0     2026-10-08 01:50  0     0    GENESIS      0      96eb3b6eedb1d27b836d...
+  1     2026-10-08 01:50  1     1    MINER1       0      063cf2fc3076802d2aab...
+Use 'chain_view <index>' for a block's header, Merkle root and records.
+library> exit
+State saved to '/tmp/tmp.g2DsGaCYl8'. Goodbye.
+=== altering the sealed_by field of block 1 inside chain.dat (MINER1 -> HACKER)
+=== third start: tampered file
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.g2DsGaCYl8'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+Validating the chain loaded from disk (2 block(s))...
+INVALID: block #1 stored hash does not match its recomputed hash (block was altered).
+Chain is INVALID: 1 problem(s) found in 2 block(s).
+LOCKED: validation failed. Read-only commands still work; mutating commands are refused.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B002 M002
+Refused: the chain is locked after a failed validation. Run validate_chain (or chain_load) before borrow_book.
+library> mine_solo
+Refused: the chain is locked after a failed validation. Run validate_chain (or chain_load) before mine_solo.
+library> validate_chain
+Validating 2 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+INVALID: block #1 stored hash does not match its recomputed hash (block was altered).
+Chain is INVALID: 1 problem(s) found in 2 block(s).
+The session stays locked: mutating commands are refused until the chain validates.
+library> exit
+State saved to '/tmp/tmp.g2DsGaCYl8'. Goodbye.

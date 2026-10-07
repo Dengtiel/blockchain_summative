@@ -1,0 +1,7 @@
+# Scenario 4: tampering with a record, a block header and a hash link is detected by validation.
+borrow_book B001 M001
+mine_solo MINER1
+tamper_demo record
+tamper_demo block
+tamper_demo link
+validate_chain

@@ -84,7 +84,7 @@ static int mine_block(CliContext *ctx, const char *sealer, MineResult *m) {
     if (m->return_bonus) printf("  Return rewards credited to members: %d token(s)\n", m->return_bonus);
     if (m->offered) printf("  %d returned cop%s offered to the reservation queue\n", m->offered, m->offered == 1 ? "y" : "ies");
     printf("  Mining reward: %d (block reward) + %d (fees) = %d token(s)\n", m->block_reward, m->fees, m->total_reward);
-    if (m->deferred) printf("  %d request(s) not yet eligible stay in the pool.\n", m->deferred);
+    if (m->deferred) printf("  %d request(s) remain pending in the pool for the next block (batch limit or not yet eligible).\n", m->deferred);
     return 0;
 }
 

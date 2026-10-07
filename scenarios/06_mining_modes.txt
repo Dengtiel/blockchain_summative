@@ -1,0 +1,14 @@
+# Scenario 6: the same pending pool mined by a pool and by cloud-rented power; difficulty 1 and 3.
+borrow_book B001 M001
+borrow_book B002 M002
+borrow_book B003 M003
+borrow_book B004 M004
+borrow_book B005 M005
+borrow_book B006 M001
+mine_pool 3
+difficulty_status
+set_difficulty 3
+mine_cloud 2 M002
+difficulty_status
+chain_view
+validate_chain

@@ -1,0 +1,86 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.6vnSSbneVr'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B001 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
+library> borrow_book B002 M002
+Borrow request REQ000002 signed by M002 and added to the pending pool.
+  Copy B002-C1, due 2026-10-22, nonce 0, status PENDING.
+library> borrow_book B003 M003
+Borrow request REQ000003 signed by M003 and added to the pending pool.
+  Copy B003-C1, due 2026-10-22, nonce 0, status PENDING.
+library> borrow_book B004 M004
+Borrow request REQ000004 signed by M004 and added to the pending pool.
+  Copy B004-C1, due 2026-10-22, nonce 0, status PENDING.
+library> borrow_book B005 M005
+Borrow request REQ000005 signed by M005 and added to the pending pool.
+  Copy B005-C1, due 2026-10-22, nonce 0, status PENDING.
+library> borrow_book B006 M001
+Borrow request REQ000006 signed by M001 and added to the pending pool.
+  Copy B006-C1, due 2026-10-22, nonce 1, status PENDING.
+library> mine_pool 3
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 3 hash attempt(s).
+  Hash:      01fe20bd50cf9e7988bf82468dbe35b2dfe8a3178a01263cacaa78ba4053d7e1
+  Sealed by: POOL
+  Contents:  5 lending record(s), 0 token transfer(s); 5 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+  1 request(s) remain pending in the pool for the next block (batch limit or not yet eligible).
+Pool mining with 3 miner(s): 1 round(s) of work covered the 3 attempts.
+  MINER          HASH RATE  ATTEMPTS   SHARE %   REWARD
+  POOLMINER1     115        0          0.00      0
+  POOLMINER2     106        0          0.00      0
+  POOLMINER3     134        3          100.00    49
+  Total reward 50: pool fee (2%) 1 to POOL, 49 shared by attempts contributed.
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  POOLMINER3     49       d1e77dc3a8d848fa...
+  POOL           1        1c82042e24fa3177...
+  2 unspent output(s), 50 token(s) in circulation
+Pending pool now holds 1 request(s).
+library> difficulty_status
+Proof-of-work difficulty: 1 (range 1-4)
+  Target: block hash must start with 0
+  Expected work: about 16 hash attempts per block (16^1)
+  Blocks on the chain by the difficulty they were mined at:  d1: 1  d2: 0  d3: 0  d4: 0
+  Block reward 50, pool fee 2%, cloud rental fee 20 per round, batch size 5 request(s) per block.
+library> set_difficulty 3
+Difficulty set to 3 for blocks mined from now on; earlier blocks keep the difficulty they were mined at.
+library> mine_cloud 2 M002
+Cloud mining: M002 rents 2 round(s) at 20 token(s) per round (block reward 50).
+  ROUND  BLOCK   ATTEMPTS   REWARD   FEE    CUM REWARD   CUM FEES     NET
+  1      #2      2552       50       20     50           20           30
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  POOLMINER3     49       d1e77dc3a8d848fa...
+  POOL           1        1c82042e24fa3177...
+  M002           30       b34a4aca6f19ee09...
+  3 unspent output(s), 80 token(s) in circulation
+  Round 2: nothing left to mine (The pending pool has nothing eligible to mine (suspicious requests are never mined).) -- the remaining rounds are not rented.
+Cloud mining summary (1 round(s) rented):
+  Gross earnings: 50 token(s)
+  Total rental fees: 20 token(s)
+  Net profit: 30 token(s)
+  M002 was credited the positive net of each round; fees are paid to the cloud provider outside the ledger.
+library> difficulty_status
+Proof-of-work difficulty: 3 (range 1-4)
+  Target: block hash must start with 000
+  Expected work: about 4096 hash attempts per block (16^3)
+  Blocks on the chain by the difficulty they were mined at:  d1: 1  d2: 0  d3: 1  d4: 0
+  Block reward 50, pool fee 2%, cloud rental fee 20 per round, batch size 5 request(s) per block.
+library> chain_view
+Blockchain: 3 block(s)
+  #     TIME              RECS  DIFF SEALED BY    REWARD HASH
+  0     2026-10-08 01:50  0     0    GENESIS      0      96eb3b6eedb1d27b836d...
+  1     2026-10-08 01:50  5     1    POOL         0      01fe20bd50cf9e7988bf...
+  2     2026-10-08 01:50  1     3    CLOUD-M002   0      000eac4eca9f547a0ccf...
+Use 'chain_view <index>' for a block's header, Merkle root and records.
+library> validate_chain
+Validating 3 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+Chain is VALID (3 block(s) checked).
+library> exit
+State saved to '/tmp/tmp.6vnSSbneVr'. Goodbye.

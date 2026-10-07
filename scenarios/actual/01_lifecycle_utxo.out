@@ -1,0 +1,75 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.omqxbKu3VA'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B001 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
+library> pool_view
+Pending pool (1 request(s)), in mining priority order: overdue-related, then reservation date, then arrival.
+  #   REQUEST      ACTION     MEMBER     ITEM         PRIORITY       STATUS     
+  1   REQ000001    BORROWED   M001       B001-C1      3 normal       PENDING    
+library> mine_solo MINER1
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 4 hash attempt(s).
+  Hash:      0fe83188320449126bbbaffece419b361150c6e5ab4af62111fdc9a988bdbec7
+  Sealed by: MINER1
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  1 unspent output(s), 50 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> view_copy B001-C1
+Copy B001-C1 of B001 ("Introduction to Algorithms")
+  Condition: NEW
+  State:     BORROWED
+  Holder:    M001
+  Due:       2026-10-22 (renewed 0 of 2 time(s))
+library> return_book B001-C1 GOOD
+Return request REQ000002 signed and added to the pending pool (copy B001-C1, nonce 1).
+  On time: reward on confirmation: 10 token(s).
+library> mine_solo MINER1
+Mining block #2 at difficulty 1 (hash must start with 0)...
+Block #2 mined in 6 hash attempt(s).
+  Hash:      0b5793681bc9469c18313cc82320b6802b79d8d24ce2cea14137c81df0a2d733
+  Sealed by: MINER1
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Return rewards credited to members: 10 token(s)
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  M001           10       db836d52fb8b16dc...
+  MINER1         50       15bd666752b06e6d...
+  3 unspent output(s), 110 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> view_copy B001-C1
+Copy B001-C1 of B001 ("Introduction to Algorithms")
+  Condition: GOOD
+  State:     AVAILABLE
+library> token_balance M001
+M001 holds 10 token(s) (UTXO model).
+  in 1 unspent output(s).
+library> utxo_view
+Full UTXO set (active model: UTXO):
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  M001           10       db836d52fb8b16dc...
+  MINER1         50       15bd666752b06e6d...
+  3 unspent output(s), 110 token(s) in circulation
+library> lending_history
+Lending history: 2 confirmed record(s) on the chain (showing the latest 50).
+  BLOCK RECORD       ACTION    MEMBER    COPY         DUE         FINE  NONCE
+  #1    REQ000001    BORROWED  M001      B001-C1      2026-10-22  0     0
+  #2    REQ000002    RETURNED  M001      B001-C1      2026-10-22  0     1
+library> validate_chain
+Validating 3 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+Chain is VALID (3 block(s) checked).
+library> exit
+State saved to '/tmp/tmp.omqxbKu3VA'. Goodbye.

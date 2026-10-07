@@ -1,0 +1,11 @@
+Block #1 mined
+second start
+Validating the chain loaded from disk (2 block(s))
+Chain is VALID (2 block(s) checked).
+Holder:    M001
+MINER1 -> HACKER
+INVALID: block #1 stored hash does not match its recomputed hash
+LOCKED: validation failed
+Refused: the chain is locked after a failed validation. Run validate_chain (or chain_load) before borrow_book.
+Refused: the chain is locked after a failed validation. Run validate_chain (or chain_load) before mine_solo.
+The session stays locked

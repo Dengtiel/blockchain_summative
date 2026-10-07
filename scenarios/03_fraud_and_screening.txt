@@ -1,0 +1,17 @@
+# Scenario 3: input screening and the fraud heuristics (concurrent borrows, duplicate request id).
+borrow_book B999 M001
+borrow_book B001 M999
+borrow_book B001 M001 2020-01-01
+borrow_book B001 M001
+borrow_book B002 M001
+borrow_book B003 M001
+borrow_book B004 M001
+fraud_review
+borrow_book B001 M002 - REQ000001
+fraud_review
+approve_suspicious REQ000004
+reject_suspicious REQ000001-DUP2
+pool_view
+mine_solo MINER1
+member_nonce M001
+validate_chain

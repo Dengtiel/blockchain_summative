@@ -1,0 +1,12 @@
+Token model: ACCOUNT
+Account M001: balance 50, next nonce 0
+(ACCOUNT model, nonce 0)
+Incorrect or reused nonce 7: M001's next expected nonce is 1.
+(ACCOUNT model, nonce 1)
+2 transfer(s) pending, so a new transfer will carry nonce 2.
+Insufficient balance: M002 has 0 token(s)
+Mining reward: 50 (block reward) + 2 (fees) = 52 token(s)
+Account M001: balance 33, next nonce 2
+Account M002: balance 15, next nonce 0
+SYSTEM
+Chain is VALID (3 block(s) checked).

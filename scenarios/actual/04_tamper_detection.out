@@ -1,0 +1,44 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.qo4LhbY13L'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B001 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
+library> mine_solo MINER1
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 3 hash attempt(s).
+  Hash:      0c1ef927599b48bc0d2bc1589d310b33a04055955502edbd996744b58d83815a
+  Sealed by: MINER1
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  MINER1         50       7822cee8d03456be...
+  1 unspent output(s), 50 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> tamper_demo record
+Tampering: changing fine_amount of record REQ000001 in block #1 from 0 to 25 (in memory only)...
+INVALID: block #1 merkle_root does not match the root recomputed from its records.
+INVALID: block #1 record REQ000001 has an invalid ECDSA signature.
+Chain is INVALID: 2 problem(s) found in 2 block(s).
+Tamper reverted: the in-memory chain is intact again and the file on disk was never touched.
+library> tamper_demo block
+Tampering: changing sealed_by of block #1 from MINER1 to ATTACKER (in memory only)...
+INVALID: block #1 stored hash does not match its recomputed hash (block was altered).
+Chain is INVALID: 1 problem(s) found in 2 block(s).
+Tamper reverted: the in-memory chain is intact again and the file on disk was never touched.
+library> tamper_demo link
+Tampering: replacing previous_hash of block #1 with a forged value (in memory only)...
+INVALID: block #1 previous_hash does not match the hash of block #0.
+INVALID: block #1 stored hash does not match its recomputed hash (block was altered).
+Chain is INVALID: 2 problem(s) found in 2 block(s).
+Tamper reverted: the in-memory chain is intact again and the file on disk was never touched.
+library> validate_chain
+Validating 2 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+Chain is VALID (2 block(s) checked).
+library> exit
+State saved to '/tmp/tmp.qo4LhbY13L'. Goodbye.

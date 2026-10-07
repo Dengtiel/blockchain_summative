@@ -1,0 +1,12 @@
+# Scenario 1: a borrow and an on-time return in the UTXO model, mined by a solo miner.
+borrow_book B001 M001
+pool_view
+mine_solo MINER1
+view_copy B001-C1
+return_book B001-C1 GOOD
+mine_solo MINER1
+view_copy B001-C1
+token_balance M001
+utxo_view
+lending_history
+validate_chain

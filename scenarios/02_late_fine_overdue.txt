@@ -1,0 +1,14 @@
+# Scenario 2: a loan goes overdue, is returned late, the fine is assessed and then settled.
+borrow_book B001 M001
+mine_solo M001
+advance_time 20
+pool_view
+return_book B001-C1 GOOD
+pool_view
+mine_solo MINER1
+view_fines M001
+settle_fine M001
+mine_solo MINER1
+view_fines M001
+member_history M001
+validate_chain

@@ -1,0 +1,15 @@
+# args: --mode account
+# Scenario 5: account model: balances, transfer nonces and the transaction history.
+borrow_book B001 M001
+mine_solo M001
+account_balance M001
+account_transfer M001 M002 10
+account_transfer M001 M002 5 7
+account_transfer M001 M002 5
+account_nonce M001
+account_transfer M002 M001 100
+mine_solo MINER1
+account_balance M001
+account_balance M002
+transaction_history M001
+validate_chain

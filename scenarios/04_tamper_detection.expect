@@ -1,0 +1,12 @@
+Block #1 mined
+changing fine_amount of record REQ000001
+block #1 merkle_root does not match
+has an invalid ECDSA signature
+Tamper reverted
+changing sealed_by of block #1
+stored hash does not match its recomputed hash
+Tamper reverted
+replacing previous_hash of block #1
+previous_hash does not match the hash of block #0
+Tamper reverted
+Chain is VALID (2 block(s) checked).

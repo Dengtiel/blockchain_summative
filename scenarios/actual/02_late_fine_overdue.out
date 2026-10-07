@@ -1,0 +1,89 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.FlpkeuFTSa'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: UTXO. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B001 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
+library> mine_solo M001
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 3 hash attempt(s).
+  Hash:      02e66ab4d322b1f06fc5ab0e8a42b82a4ca4bd726278129f5dc6065399e8f9cd
+  Sealed by: M001
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: M001 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  M001           50       50dc544c0c6b7a12...
+  1 unspent output(s), 50 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> advance_time 20
+System clock advanced by 20 day(s); it is now 2026-10-28 01:50 (demo time travel, saved with the chain).
+Overdue scan: 1 OVERDUE flag(s) queued in the pending pool.
+library> pool_view
+Pending pool (1 request(s)), in mining priority order: overdue-related, then reservation date, then arrival.
+  #   REQUEST      ACTION     MEMBER     ITEM         PRIORITY       STATUS     
+  1   REQ000002    OVERDUE    M001       B001-C1      1 overdue      PENDING    
+library> return_book B001-C1 GOOD
+Return request REQ000003 signed and added to the pending pool (copy B001-C1, nonce 2).
+  LATE by 6 day(s): fine 6 token(s); reward on confirmation: 5.
+library> pool_view
+Pending pool (2 request(s)), in mining priority order: overdue-related, then reservation date, then arrival.
+  #   REQUEST      ACTION     MEMBER     ITEM         PRIORITY       STATUS     
+  1   REQ000002    OVERDUE    M001       B001-C1      1 overdue      PENDING    
+  2   REQ000003    RETURNED   M001       B001-C1      1 overdue      PENDING    
+library> mine_solo MINER1
+Mining block #2 at difficulty 1 (hash must start with 0)...
+Block #2 mined in 13 hash attempt(s).
+  Hash:      06b98a135ab48e55034e89b0e9d50150ddd9f604154e6759db7fed2d2260efb5
+  Sealed by: MINER1
+  Contents:  2 lending record(s), 0 token transfer(s); 2 request(s) confirmed
+  Return rewards credited to members: 5 token(s)
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  M001           50       50dc544c0c6b7a12...
+  M001           5        5145506af38bf1df...
+  MINER1         50       15bd666752b06e6d...
+  3 unspent output(s), 105 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> view_fines M001
+Fines (1 token(s) per day late):
+  M001       assessed 6    settled 0    pending 0    outstanding 6    accruing on overdue loans 0
+library> settle_fine M001
+Fine settlement TXN000001 queued: 6 token(s) from M001 to LIBRARY (overdue-related, so it is mined first).
+library> mine_solo MINER1
+Mining block #3 at difficulty 1 (hash must start with 0)...
+Block #3 mined in 8 hash attempt(s).
+  Hash:      0792b74b85487f73ba7695f315199493328bc815284ec7f76e4656ac93895ccb
+  Sealed by: MINER1
+  Contents:  0 lending record(s), 1 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: MINER1 receives the full reward of 50 token(s).
+UTXO set after this block:
+  OWNER          AMOUNT   CREATED BY TX
+  M001           5        5145506af38bf1df...
+  MINER1         50       15bd666752b06e6d...
+  LIBRARY        6        967797f25e89fb0a...
+  M001           44       967797f25e89fb0a...
+  MINER1         50       47d90cf7e066c741...
+  5 unspent output(s), 155 token(s) in circulation
+Pending pool now holds 0 request(s).
+library> view_fines M001
+Fines (1 token(s) per day late):
+  M001       assessed 6    settled 6    pending 0    outstanding 0    accruing on overdue loans 0
+library> member_history M001
+History of member M001:
+  BLOCK RECORD       ACTION    MEMBER    COPY         DUE         FINE  NONCE
+  #1    REQ000001    BORROWED  M001      B001-C1      2026-10-22  0     0
+  #2    REQ000002    OVERDUE   M001      B001-C1      2026-10-22  6     1
+  #2    REQ000003    RETURNED  M001      B001-C1      2026-10-22  6     2
+library> validate_chain
+Validating 4 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+Chain is VALID (4 block(s) checked).
+library> exit
+State saved to '/tmp/tmp.FlpkeuFTSa'. Goodbye.

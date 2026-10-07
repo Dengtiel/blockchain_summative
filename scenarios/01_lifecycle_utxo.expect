@@ -1,0 +1,12 @@
+Borrow request REQ000001 signed by M001
+3 normal
+Block #1 mined
+State:     BORROWED
+Return request REQ000002 signed
+On time: reward on confirmation: 10 token(s).
+Block #2 mined
+State:     AVAILABLE
+M001 holds 10 token(s) (UTXO model).
+3 unspent output(s), 110 token(s) in circulation
+Lending history: 2 confirmed record(s)
+Chain is VALID (3 block(s) checked).

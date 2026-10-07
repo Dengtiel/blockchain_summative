@@ -1,0 +1,18 @@
+# Scenario 7: a reservation queue: the returned copy is held for the member at the front.
+borrow_book B002 M001
+mine_solo MINER1
+borrow_book B002 M002
+reserve_book B002 M002
+reserve_book B002 M003
+mine_solo MINER1
+reservation_status B002
+return_book B002-C1 GOOD
+mine_solo MINER1
+view_copy B002-C1
+reservation_status B002
+borrow_book B002 M003
+borrow_book B002 M002
+mine_solo MINER1
+view_copy B002-C1
+reservation_status B002
+validate_chain

@@ -1,0 +1,64 @@
+Blockchain-Based Library Book Lending Tracker (ALU)
+Loading registries from '/tmp/tmp.q8edp8U2pj'...
+Registries: 6 book(s), 5 member(s), 7 copy record(s).
+No saved chain found: started a new chain with a genesis block.
+Overdue scan: nothing overdue.
+Token model: ACCOUNT. Difficulty: 1. Type 'help' for commands.
+library> borrow_book B001 M001
+Borrow request REQ000001 signed by M001 and added to the pending pool.
+  Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
+library> mine_solo M001
+Mining block #1 at difficulty 1 (hash must start with 0)...
+Block #1 mined in 1 hash attempt(s).
+  Hash:      0aa767981bc413f4dc31c02e9d8b44cb752115f48884c168fdd042fe6a164c35
+  Sealed by: M001
+  Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
+  Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
+Solo mining: M001 receives the full reward of 50 token(s).
+Account balances after this block:
+  ACCOUNT        BALANCE   NEXT NONCE
+  M001           50        0
+Pending pool now holds 0 request(s).
+library> account_balance M001
+Account M001: balance 50, next nonce 0
+library> account_transfer M001 M002 10
+Transfer TXN000001 queued: 10 token(s) from M001 to M002, fee 1 (ACCOUNT model, nonce 0).
+  Balances change when a miner confirms it.
+library> account_transfer M001 M002 5 7
+Transfer rejected: Incorrect or reused nonce 7: M001's next expected nonce is 1.
+library> account_transfer M001 M002 5
+Transfer TXN000002 queued: 5 token(s) from M001 to M002, fee 1 (ACCOUNT model, nonce 1).
+  Balances change when a miner confirms it.
+library> account_nonce M001
+M001: next confirmed transfer nonce 0; 2 transfer(s) pending, so a new transfer will carry nonce 2.
+library> account_transfer M002 M001 100
+Transfer rejected: Insufficient balance: M002 has 0 token(s) available but needs 101 (amount 100 + fee 1).
+library> mine_solo MINER1
+Mining block #2 at difficulty 1 (hash must start with 0)...
+Block #2 mined in 8 hash attempt(s).
+  Hash:      025babdb3af61605a20658b6d57bf83212f8c2d5903f631d73da79bbdbe204a1
+  Sealed by: MINER1
+  Contents:  0 lending record(s), 2 token transfer(s); 2 request(s) confirmed
+  Mining reward: 50 (block reward) + 2 (fees) = 52 token(s)
+Solo mining: MINER1 receives the full reward of 52 token(s).
+Account balances after this block:
+  ACCOUNT        BALANCE   NEXT NONCE
+  M001           33        2
+  M002           15        0
+  MINER1         52        0
+Pending pool now holds 0 request(s).
+library> account_balance M001
+Account M001: balance 33, next nonce 2
+library> account_balance M002
+Account M002: balance 15, next nonce 0
+library> transaction_history M001
+Transaction history for M001 (newest first, account ledger):
+  TX               FROM       TO         AMOUNT  FEE  NONCE  TIME
+  34fcec783ac8...  M001       M002       5       1    1      2026-10-08 01:50
+  5a06f9b4f194...  M001       M002       10      1    0      2026-10-08 01:50
+  50dc544c0c6b...  SYSTEM     M001       50      0    0      2026-10-08 01:50
+library> validate_chain
+Validating 3 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
+Chain is VALID (3 block(s) checked).
+library> exit
+State saved to '/tmp/tmp.q8edp8U2pj'. Goodbye.

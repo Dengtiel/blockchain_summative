@@ -1,0 +1,13 @@
+Unknown book id B999.
+Unknown member id M999.
+the due date is in the past
+FLAGGED SUSPICIOUS: member already holds 3 concurrent borrows (limit 3)
+1 flagged.
+REQ000001-DUP2
+duplicate request_id already seen
+2 flagged.
+Librarian approved REQ000004
+Librarian rejected REQ000001-DUP2
+Contents:  4 lending record(s)
+4 record(s) confirmed on the chain
+Chain is VALID (2 block(s) checked).

@@ -1,0 +1,14 @@
+Block #1 mined
+No copy of B002 is available. Use: reserve_book B002 M002
+Reservation request REQ000002 signed
+Reservation request REQ000003 signed
+1. M002
+2. M003
+1 returned copy offered to the reservation queue
+State:     RESERVED
+the next returned copy is reserved for another member
+Borrow request REQ000005 signed by M002
+State:     BORROWED
+Holder:    M002
+1. M003
+Chain is VALID (5 block(s) checked).
