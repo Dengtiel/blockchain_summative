@@ -12,3 +12,4 @@ keys/
 # editor / OS noise
 .vscode/
 .DS_Store
+demo/
