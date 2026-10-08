@@ -1,5 +1,5 @@
 Blockchain-Based Library Book Lending Tracker (ALU)
-Loading registries from '/tmp/tmp.g2DsGaCYl8'...
+Loading registries from '/tmp/tmp.14eDdfzYur'...
 Registries: 6 book(s), 5 member(s), 7 copy record(s).
 No saved chain found: started a new chain with a genesis block.
 Overdue scan: nothing overdue.
@@ -9,8 +9,8 @@ Borrow request REQ000001 signed by M001 and added to the pending pool.
   Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
 library> mine_solo MINER1
 Mining block #1 at difficulty 1 (hash must start with 0)...
-Block #1 mined in 26 hash attempt(s).
-  Hash:      063cf2fc3076802d2aab9b999b66d6404e86f0b86c5405ad63e798093050830c
+Block #1 mined in 21 hash attempt(s).
+  Hash:      03a66b43dde889463e6c4817b2030bdc561faea8386a5e51b0f8311cf7cfb64e
   Sealed by: MINER1
   Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
   Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
@@ -21,10 +21,10 @@ UTXO set after this block:
   1 unspent output(s), 50 token(s) in circulation
 Pending pool now holds 0 request(s).
 library> exit
-State saved to '/tmp/tmp.g2DsGaCYl8'. Goodbye.
+State saved to '/tmp/tmp.14eDdfzYur'. Goodbye.
 === second start: the chain is loaded and re-validated
 Blockchain-Based Library Book Lending Tracker (ALU)
-Loading registries from '/tmp/tmp.g2DsGaCYl8'...
+Loading registries from '/tmp/tmp.14eDdfzYur'...
 Registries: 6 book(s), 5 member(s), 7 copy record(s).
 Validating the chain loaded from disk (2 block(s))...
 Chain is VALID (2 block(s) checked).
@@ -39,15 +39,15 @@ Copy B001-C1 of B001 ("Introduction to Algorithms")
 library> chain_view
 Blockchain: 2 block(s)
   #     TIME              RECS  DIFF SEALED BY    REWARD HASH
-  0     2026-10-08 01:50  0     0    GENESIS      0      96eb3b6eedb1d27b836d...
-  1     2026-10-08 01:50  1     1    MINER1       0      063cf2fc3076802d2aab...
+  0     2026-10-08 22:06  0     0    GENESIS      0      f49c4f68f6ddca905e46...
+  1     2026-10-08 22:06  1     1    MINER1       0      03a66b43dde889463e6c...
 Use 'chain_view <index>' for a block's header, Merkle root and records.
 library> exit
-State saved to '/tmp/tmp.g2DsGaCYl8'. Goodbye.
+State saved to '/tmp/tmp.14eDdfzYur'. Goodbye.
 === altering the sealed_by field of block 1 inside chain.dat (MINER1 -> HACKER)
 === third start: tampered file
 Blockchain-Based Library Book Lending Tracker (ALU)
-Loading registries from '/tmp/tmp.g2DsGaCYl8'...
+Loading registries from '/tmp/tmp.14eDdfzYur'...
 Registries: 6 book(s), 5 member(s), 7 copy record(s).
 Validating the chain loaded from disk (2 block(s))...
 INVALID: block #1 stored hash does not match its recomputed hash (block was altered).
@@ -64,4 +64,4 @@ INVALID: block #1 stored hash does not match its recomputed hash (block was alte
 Chain is INVALID: 1 problem(s) found in 2 block(s).
 The session stays locked: mutating commands are refused until the chain validates.
 library> exit
-State saved to '/tmp/tmp.g2DsGaCYl8'. Goodbye.
+State saved to '/tmp/tmp.14eDdfzYur'. Goodbye.

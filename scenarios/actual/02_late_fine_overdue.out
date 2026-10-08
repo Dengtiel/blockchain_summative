@@ -1,5 +1,5 @@
 Blockchain-Based Library Book Lending Tracker (ALU)
-Loading registries from '/tmp/tmp.FlpkeuFTSa'...
+Loading registries from '/tmp/tmp.lKaBMrmKG9'...
 Registries: 6 book(s), 5 member(s), 7 copy record(s).
 No saved chain found: started a new chain with a genesis block.
 Overdue scan: nothing overdue.
@@ -9,8 +9,8 @@ Borrow request REQ000001 signed by M001 and added to the pending pool.
   Copy B001-C1, due 2026-10-22, nonce 0, status PENDING.
 library> mine_solo M001
 Mining block #1 at difficulty 1 (hash must start with 0)...
-Block #1 mined in 3 hash attempt(s).
-  Hash:      02e66ab4d322b1f06fc5ab0e8a42b82a4ca4bd726278129f5dc6065399e8f9cd
+Block #1 mined in 9 hash attempt(s).
+  Hash:      0bdffc8bff36aa3e9752a548131067925b656eeacc22727275095b34b452b40c
   Sealed by: M001
   Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
   Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
@@ -21,7 +21,7 @@ UTXO set after this block:
   1 unspent output(s), 50 token(s) in circulation
 Pending pool now holds 0 request(s).
 library> advance_time 20
-System clock advanced by 20 day(s); it is now 2026-10-28 01:50 (demo time travel, saved with the chain).
+System clock advanced by 20 day(s); it is now 2026-10-28 22:06 (demo time travel, saved with the chain).
 Overdue scan: 1 OVERDUE flag(s) queued in the pending pool.
 library> pool_view
 Pending pool (1 request(s)), in mining priority order: overdue-related, then reservation date, then arrival.
@@ -37,8 +37,8 @@ Pending pool (2 request(s)), in mining priority order: overdue-related, then res
   2   REQ000003    RETURNED   M001       B001-C1      1 overdue      PENDING    
 library> mine_solo MINER1
 Mining block #2 at difficulty 1 (hash must start with 0)...
-Block #2 mined in 13 hash attempt(s).
-  Hash:      06b98a135ab48e55034e89b0e9d50150ddd9f604154e6759db7fed2d2260efb5
+Block #2 mined in 1 hash attempt(s).
+  Hash:      03f138b94940baf2490f0eba20dad10c25ba4bdf1e13a7b2a351e3769a2a766d
   Sealed by: MINER1
   Contents:  2 lending record(s), 0 token transfer(s); 2 request(s) confirmed
   Return rewards credited to members: 5 token(s)
@@ -58,8 +58,8 @@ library> settle_fine M001
 Fine settlement TXN000001 queued: 6 token(s) from M001 to LIBRARY (overdue-related, so it is mined first).
 library> mine_solo MINER1
 Mining block #3 at difficulty 1 (hash must start with 0)...
-Block #3 mined in 8 hash attempt(s).
-  Hash:      0792b74b85487f73ba7695f315199493328bc815284ec7f76e4656ac93895ccb
+Block #3 mined in 9 hash attempt(s).
+  Hash:      03b68eba0a322eac897cf36868ee1492930c330fc6020456cf006b71f3a5dc43
   Sealed by: MINER1
   Contents:  0 lending record(s), 1 token transfer(s); 1 request(s) confirmed
   Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
@@ -86,4 +86,4 @@ library> validate_chain
 Validating 4 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
 Chain is VALID (4 block(s) checked).
 library> exit
-State saved to '/tmp/tmp.FlpkeuFTSa'. Goodbye.
+State saved to '/tmp/tmp.lKaBMrmKG9'. Goodbye.

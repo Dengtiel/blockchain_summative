@@ -1,5 +1,5 @@
 Blockchain-Based Library Book Lending Tracker (ALU)
-Loading registries from '/tmp/tmp.6vnSSbneVr'...
+Loading registries from '/tmp/tmp.f6Zu2lewOk'...
 Registries: 6 book(s), 5 member(s), 7 copy record(s).
 No saved chain found: started a new chain with a genesis block.
 Overdue scan: nothing overdue.
@@ -24,23 +24,25 @@ Borrow request REQ000006 signed by M001 and added to the pending pool.
   Copy B006-C1, due 2026-10-22, nonce 1, status PENDING.
 library> mine_pool 3
 Mining block #1 at difficulty 1 (hash must start with 0)...
-Block #1 mined in 3 hash attempt(s).
-  Hash:      01fe20bd50cf9e7988bf82468dbe35b2dfe8a3178a01263cacaa78ba4053d7e1
+Block #1 mined in 17 hash attempt(s).
+  Hash:      06193ce71d1d4083444ec4614cc8583d9a9ddd9c7afd361818ca844164717fc7
   Sealed by: POOL
   Contents:  5 lending record(s), 0 token transfer(s); 5 request(s) confirmed
   Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
   1 request(s) remain pending in the pool for the next block (batch limit or not yet eligible).
-Pool mining with 3 miner(s): 1 round(s) of work covered the 3 attempts.
+Pool mining with 3 miner(s): 1 round(s) of work covered the 17 attempts.
   MINER          HASH RATE  ATTEMPTS   SHARE %   REWARD
-  POOLMINER1     115        0          0.00      0
-  POOLMINER2     106        0          0.00      0
-  POOLMINER3     134        3          100.00    49
+  POOLMINER1     60         3          17.65     8
+  POOLMINER2     96         5          29.41     14
+  POOLMINER3     125        9          52.94     27
   Total reward 50: pool fee (2%) 1 to POOL, 49 shared by attempts contributed.
 UTXO set after this block:
   OWNER          AMOUNT   CREATED BY TX
-  POOLMINER3     49       d1e77dc3a8d848fa...
-  POOL           1        1c82042e24fa3177...
-  2 unspent output(s), 50 token(s) in circulation
+  POOLMINER1     8        872fdfc5459a4262...
+  POOLMINER2     14       8a33030935cca59b...
+  POOLMINER3     27       72fd759f3f9ebdc0...
+  POOL           1        f3712df61d440182...
+  4 unspent output(s), 50 token(s) in circulation
 Pending pool now holds 1 request(s).
 library> difficulty_status
 Proof-of-work difficulty: 1 (range 1-4)
@@ -53,13 +55,15 @@ Difficulty set to 3 for blocks mined from now on; earlier blocks keep the diffic
 library> mine_cloud 2 M002
 Cloud mining: M002 rents 2 round(s) at 20 token(s) per round (block reward 50).
   ROUND  BLOCK   ATTEMPTS   REWARD   FEE    CUM REWARD   CUM FEES     NET
-  1      #2      2552       50       20     50           20           30
+  1      #2      542        50       20     50           20           30
 UTXO set after this block:
   OWNER          AMOUNT   CREATED BY TX
-  POOLMINER3     49       d1e77dc3a8d848fa...
-  POOL           1        1c82042e24fa3177...
-  M002           30       b34a4aca6f19ee09...
-  3 unspent output(s), 80 token(s) in circulation
+  POOLMINER1     8        872fdfc5459a4262...
+  POOLMINER2     14       8a33030935cca59b...
+  POOLMINER3     27       72fd759f3f9ebdc0...
+  POOL           1        f3712df61d440182...
+  M002           30       298578e092f7e5f3...
+  5 unspent output(s), 80 token(s) in circulation
   Round 2: nothing left to mine (The pending pool has nothing eligible to mine (suspicious requests are never mined).) -- the remaining rounds are not rented.
 Cloud mining summary (1 round(s) rented):
   Gross earnings: 50 token(s)
@@ -75,12 +79,12 @@ Proof-of-work difficulty: 3 (range 1-4)
 library> chain_view
 Blockchain: 3 block(s)
   #     TIME              RECS  DIFF SEALED BY    REWARD HASH
-  0     2026-10-08 01:50  0     0    GENESIS      0      96eb3b6eedb1d27b836d...
-  1     2026-10-08 01:50  5     1    POOL         0      01fe20bd50cf9e7988bf...
-  2     2026-10-08 01:50  1     3    CLOUD-M002   0      000eac4eca9f547a0ccf...
+  0     2026-10-08 22:06  0     0    GENESIS      0      f49c4f68f6ddca905e46...
+  1     2026-10-08 22:06  5     1    POOL         0      06193ce71d1d4083444e...
+  2     2026-10-08 22:06  1     3    CLOUD-M002   0      00050597ec76bbb6595d...
 Use 'chain_view <index>' for a block's header, Merkle root and records.
 library> validate_chain
 Validating 3 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
 Chain is VALID (3 block(s) checked).
 library> exit
-State saved to '/tmp/tmp.6vnSSbneVr'. Goodbye.
+State saved to '/tmp/tmp.f6Zu2lewOk'. Goodbye.

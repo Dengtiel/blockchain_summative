@@ -1,5 +1,5 @@
 Blockchain-Based Library Book Lending Tracker (ALU)
-Loading registries from '/tmp/tmp.omqxbKu3VA'...
+Loading registries from '/tmp/tmp.99D5wE6ToZ'...
 Registries: 6 book(s), 5 member(s), 7 copy record(s).
 No saved chain found: started a new chain with a genesis block.
 Overdue scan: nothing overdue.
@@ -13,8 +13,8 @@ Pending pool (1 request(s)), in mining priority order: overdue-related, then res
   1   REQ000001    BORROWED   M001       B001-C1      3 normal       PENDING    
 library> mine_solo MINER1
 Mining block #1 at difficulty 1 (hash must start with 0)...
-Block #1 mined in 4 hash attempt(s).
-  Hash:      0fe83188320449126bbbaffece419b361150c6e5ab4af62111fdc9a988bdbec7
+Block #1 mined in 1 hash attempt(s).
+  Hash:      0950b7cbe2903b622135388bd335b5aff953f3bce375728614b372dfd2e0c33e
   Sealed by: MINER1
   Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
   Mining reward: 50 (block reward) + 0 (fees) = 50 token(s)
@@ -35,8 +35,8 @@ Return request REQ000002 signed and added to the pending pool (copy B001-C1, non
   On time: reward on confirmation: 10 token(s).
 library> mine_solo MINER1
 Mining block #2 at difficulty 1 (hash must start with 0)...
-Block #2 mined in 6 hash attempt(s).
-  Hash:      0b5793681bc9469c18313cc82320b6802b79d8d24ce2cea14137c81df0a2d733
+Block #2 mined in 5 hash attempt(s).
+  Hash:      0fe466fdbc8a71f48fa72d30e18f3ef43c57c1eb4df1b113f7eca39856e62406
   Sealed by: MINER1
   Contents:  1 lending record(s), 0 token transfer(s); 1 request(s) confirmed
   Return rewards credited to members: 10 token(s)
@@ -72,4 +72,4 @@ library> validate_chain
 Validating 3 block(s): hash links, recomputed hashes, proof-of-work, Merkle roots, timestamps, ECDSA signatures, nonces and registry references...
 Chain is VALID (3 block(s) checked).
 library> exit
-State saved to '/tmp/tmp.omqxbKu3VA'. Goodbye.
+State saved to '/tmp/tmp.99D5wE6ToZ'. Goodbye.
